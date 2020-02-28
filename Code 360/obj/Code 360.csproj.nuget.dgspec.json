@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\Desktop\\Code_360_Student_Portal-master\\Code 360\\Code 360.csproj": {}
+    "C:\\Users\\user\\Desktop\\360_Student_Portal\\Code 360\\Code 360.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\Desktop\\Code_360_Student_Portal-master\\Code 360\\Code 360.csproj": {
+    "C:\\Users\\user\\Desktop\\360_Student_Portal\\Code 360\\Code 360.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\Desktop\\Code_360_Student_Portal-master\\Code 360\\Code 360.csproj",
+        "projectUniqueName": "C:\\Users\\user\\Desktop\\360_Student_Portal\\Code 360\\Code 360.csproj",
         "projectName": "Code 360",
-        "projectPath": "C:\\Users\\user\\Desktop\\Code_360_Student_Portal-master\\Code 360\\Code 360.csproj",
+        "projectPath": "C:\\Users\\user\\Desktop\\360_Student_Portal\\Code 360\\Code 360.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\Desktop\\Code_360_Student_Portal-master\\Code 360\\obj\\",
+        "outputPath": "C:\\Users\\user\\Desktop\\360_Student_Portal\\Code 360\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
