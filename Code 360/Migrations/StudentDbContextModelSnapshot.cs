@@ -19,6 +19,106 @@ namespace Code_360.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Code_360.Models.Batches.Batch", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("EndDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ProgramId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Project")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StartDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StudentBatch")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProgramId");
+
+                    b.ToTable("Batch");
+                });
+
+            modelBuilder.Entity("Code_360.Models.Courses.Course", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Level")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ProgramxId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProgramxId");
+
+                    b.ToTable("Course");
+                });
+
+            modelBuilder.Entity("Code_360.Models.Progamk.Programx", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Cost")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Duration")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Programx");
+                });
+
+            modelBuilder.Entity("Code_360.Models.ProgramCourses.ProgramCourse", b =>
+                {
+                    b.Property<int>("ProgramId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProgramId", "CourseId");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("ProgramCourses");
+                });
+
             modelBuilder.Entity("Code_360.Models.Student", b =>
                 {
                     b.Property<int>("Id")
@@ -275,6 +375,35 @@ namespace Code_360.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("Code_360.Models.Batches.Batch", b =>
+                {
+                    b.HasOne("Code_360.Models.Progamk.Programx", "Program")
+                        .WithMany("Batches")
+                        .HasForeignKey("ProgramId");
+                });
+
+            modelBuilder.Entity("Code_360.Models.Courses.Course", b =>
+                {
+                    b.HasOne("Code_360.Models.Progamk.Programx", null)
+                        .WithMany("courses")
+                        .HasForeignKey("ProgramxId");
+                });
+
+            modelBuilder.Entity("Code_360.Models.ProgramCourses.ProgramCourse", b =>
+                {
+                    b.HasOne("Code_360.Models.Courses.Course", "Course")
+                        .WithMany("ProgramCourses")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Code_360.Models.Progamk.Programx", "Program")
+                        .WithMany("ProgramCourses")
+                        .HasForeignKey("ProgramId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

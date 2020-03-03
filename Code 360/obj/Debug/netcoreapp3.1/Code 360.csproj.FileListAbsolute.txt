@@ -269,7 +269,6 @@ C:\Users\user\Desktop\360_Student_Portal\Code 360\bin\Debug\netcoreapp3.1\runtim
 C:\Users\user\Desktop\360_Student_Portal\Code 360\obj\Debug\netcoreapp3.1\Code 360.csprojAssemblyReference.cache
 C:\Users\user\Desktop\360_Student_Portal\Code 360\obj\Debug\netcoreapp3.1\staticwebassets\Code 360.StaticWebAssets.Manifest.cache
 C:\Users\user\Desktop\360_Student_Portal\Code 360\obj\Debug\netcoreapp3.1\staticwebassets\Code 360.StaticWebAssets.xml
-C:\Users\user\Desktop\360_Student_Portal\Code 360\obj\Debug\netcoreapp3.1\Code 360.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\user\Desktop\360_Student_Portal\Code 360\obj\Debug\netcoreapp3.1\Code 360.RazorAssemblyInfo.cache
 C:\Users\user\Desktop\360_Student_Portal\Code 360\obj\Debug\netcoreapp3.1\Code 360.RazorAssemblyInfo.cs
 C:\Users\user\Desktop\360_Student_Portal\Code 360\obj\Debug\netcoreapp3.1\Code 360.AssemblyInfoInputs.cache
@@ -295,3 +294,4 @@ C:\Users\user\Desktop\360_Student_Portal\Code 360\obj\Debug\netcoreapp3.1\Code 3
 C:\Users\user\Desktop\360_Student_Portal\Code 360\obj\Debug\netcoreapp3.1\Code 360.csproj.CopyComplete
 C:\Users\user\Desktop\360_Student_Portal\Code 360\obj\Debug\netcoreapp3.1\Code 360.dll
 C:\Users\user\Desktop\360_Student_Portal\Code 360\obj\Debug\netcoreapp3.1\Code 360.pdb
+C:\Users\user\Desktop\360_Student_Portal\Code 360\obj\Debug\netcoreapp3.1\Code 360.MvcApplicationPartsAssemblyInfo.cache

@@ -25,10 +25,61 @@ namespace Code_360.Models
             Complicated
         }
 
+
         public enum Level
         {
             Beginer = 1,
             Intermidiate,
             Expert
         }
+
+        public enum CourseName
+        {
+            Html = 1,
+            Css,
+            C,
+            xamarin,
+            AspNet
+        }
+
+        public enum ProgramName
+        {
+
+        DotNet = 1,
+        Fullstack,
+        Frontend
+
+        }
+
+        public enum ProjectStatus
+        {
+
+        Completed = 1,
+        Incomplete,
+        Abandoned
+
+        }
+
+        public enum StudentInBatchStatus
+        {
+
+        Graduated = 1,
+        Left,
+        On,
+        Disqualified
+
+        }
+
+        public enum Grades
+        {
+        A1 = 1,
+        A,
+        B,
+        C,
+        D
+        }
+    
+
+    //enums containing the choice which are to picked in a drop down in the UI view
+
 }
