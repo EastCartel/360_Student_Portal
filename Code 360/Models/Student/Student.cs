@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Code_360.Models.Batches;
+using Code_360.Models.EmployMentx;
+using Code_360.Models.Paymentx;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -38,5 +41,11 @@ namespace Code_360.Models
         public string NextOfKinDocumentUrl { get; set; }
         [Required]
         public long BVN { get; set; }
+
+        public Batch Batch { get; set; }
+
+        public List<Payment> Payments { get; set; }
+
+        public List<Employment> StudentCompanies { get; set; }
     }
 }

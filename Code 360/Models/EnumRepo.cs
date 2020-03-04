@@ -78,6 +78,15 @@ namespace Code_360.Models
         C,
         D
         }
+
+        public enum PaymentMethod
+        {
+        BankTransfer = 1,
+        Cheques,
+        POS,
+        Cash,
+        Paypal
+        }
     
 
     //enums containing the choice which are to picked in a drop down in the UI view
