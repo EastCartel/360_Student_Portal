@@ -104,14 +104,12 @@ namespace Code_360.Migrations
                     b.ToTable("Courses");
                 });
 
-            modelBuilder.Entity("Code_360.Models.Employmentx.Employment", b =>
+            modelBuilder.Entity("Code_360.Models.EmployMentx.Employment", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
 
-                    b.Property<int?>("CompanyId")
+                    b.Property<int>("CompanyId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("EndDate")
@@ -120,16 +118,11 @@ namespace Code_360.Migrations
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("StudentId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
+                    b.HasKey("StudentId", "CompanyId");
 
                     b.HasIndex("CompanyId");
 
-                    b.HasIndex("StudentId");
-
-                    b.ToTable("Employments");
+                    b.ToTable("Employment");
                 });
 
             modelBuilder.Entity("Code_360.Models.Guarantorx.Guarantors", b =>
@@ -248,7 +241,10 @@ namespace Code_360.Migrations
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("EmploymentId")
+                    b.Property<int?>("EmploymentCompanyId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("EmploymentStudentId")
                         .HasColumnType("int");
 
                     b.Property<string>("Payday")
@@ -259,7 +255,7 @@ namespace Code_360.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EmploymentId");
+                    b.HasIndex("EmploymentStudentId", "EmploymentCompanyId");
 
                     b.ToTable("Salaries");
                 });
@@ -329,21 +325,6 @@ namespace Code_360.Migrations
                     b.HasIndex("BatchId");
 
                     b.ToTable("Students");
-                });
-
-            modelBuilder.Entity("Code_360.Models.StudentCompanyx.StudentCompany", b =>
-                {
-                    b.Property<int>("StudentId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CompanyId")
-                        .HasColumnType("int");
-
-                    b.HasKey("StudentId", "CompanyId");
-
-                    b.HasIndex("CompanyId");
-
-                    b.ToTable("StudentCompany");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -556,14 +537,16 @@ namespace Code_360.Migrations
                         .HasForeignKey("ProgramxId");
                 });
 
-            modelBuilder.Entity("Code_360.Models.Employmentx.Employment", b =>
+            modelBuilder.Entity("Code_360.Models.EmployMentx.Employment", b =>
                 {
-                    b.HasOne("Code_360.Models.Companyx.Company", null)
-                        .WithMany("Employments")
-                        .HasForeignKey("CompanyId");
+                    b.HasOne("Code_360.Models.Companyx.Company", "Company")
+                        .WithMany("StudentCompanies")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Code_360.Models.Student", "Student")
-                        .WithMany()
+                        .WithMany("StudentCompanies")
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -604,9 +587,9 @@ namespace Code_360.Migrations
 
             modelBuilder.Entity("Code_360.Models.Salaryx.Salary", b =>
                 {
-                    b.HasOne("Code_360.Models.Employmentx.Employment", null)
-                        .WithMany("salarys")
-                        .HasForeignKey("EmploymentId");
+                    b.HasOne("Code_360.Models.EmployMentx.Employment", null)
+                        .WithMany("Salaries")
+                        .HasForeignKey("EmploymentStudentId", "EmploymentCompanyId");
                 });
 
             modelBuilder.Entity("Code_360.Models.Student", b =>
@@ -614,21 +597,6 @@ namespace Code_360.Migrations
                     b.HasOne("Code_360.Models.Batches.Batch", "Batch")
                         .WithMany("Students")
                         .HasForeignKey("BatchId");
-                });
-
-            modelBuilder.Entity("Code_360.Models.StudentCompanyx.StudentCompany", b =>
-                {
-                    b.HasOne("Code_360.Models.Companyx.Company", "Company")
-                        .WithMany("StudentCompanies")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Code_360.Models.Student", "Student")
-                        .WithMany("StudentCompanies")
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
