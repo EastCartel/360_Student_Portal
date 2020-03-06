@@ -1,6 +1,9 @@
 ﻿using Code_360.Models.Batches;
 using Code_360.Models.EmployMentx;
 using Code_360.Models.Paymentx;
+using Code_360.Models.Projectox;
+using Code_360.Models.StudentGurantorxx;
+using Code_360.Models.StudentInBatches;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -41,11 +44,15 @@ namespace Code_360.Models
         public string NextOfKinDocumentUrl { get; set; }
         [Required]
         public long BVN { get; set; }
+        public List<StudentGuarantor> StudentGuarantors { get; set; }
 
-        public Batch Batch { get; set; }
+        public List<StudentInBatch> StudentBatches { get; set; }
 
         public List<Payment> Payments { get; set; }
 
         public List<Employment> StudentCompanies { get; set; }
+
+        public List<Project> Projects { get; set; }
+
     }
 }

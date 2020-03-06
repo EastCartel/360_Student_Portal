@@ -6,12 +6,29 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200305140810_AfterGuarantor.cs" />
+    <Compile Remove="Migrations\20200305140810_AfterGuarantor.Designer.cs" />
+    <Compile Remove="Migrations\20200305142058_EFmigration.cs" />
+    <Compile Remove="Migrations\20200305142058_EFmigration.Designer.cs" />
+    <Compile Remove="Migrations\20200305142313_EFmigration.cs" />
+    <Compile Remove="Migrations\20200305142313_EFmigration.Designer.cs" />
+    <Compile Remove="Migrations\20200305142744_EFmigrationx.cs" />
+    <Compile Remove="Migrations\20200305142744_EFmigrationx.Designer.cs" />
+    <Compile Remove="Migrations\20200305142852_EFmigrationx.cs" />
+    <Compile Remove="Migrations\20200305142852_EFmigrationx.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\landing\" />
   </ItemGroup>
 
 </Project>

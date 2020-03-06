@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Code_360.Models;
+using Code_360.Models.Guarantorx;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -48,6 +49,8 @@ namespace Code_360
                 });
 
             services.AddScoped<IStudentRepository, StudentRepository>();
+
+            services.AddScoped<IGuarantorRepository, StudentRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,12 +67,12 @@ namespace Code_360
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute("default", "{controller}/{action}/{id}");
+                routes.MapRoute("default", "{controller=home}/{action=index}/{id}");
             });
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute("default", "{controller=home}/{action=index}/{id?}");
+                endpoints.MapControllerRoute("default", "{controller=home}/{action=Index}/{id?}");
             });
             
         }

@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Guarantors>
+
+@{ 
+    ViewBag.Title = "Guarantors List";
+}
+
+
+<div class="panel-body">
+    <table class="table table-striped table-hover">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Gender</th>
+            <th>Nationality</th>
+        </tr>
+        @foreach (var guarantors in Model)
+        {
+            <tr>
+                <td>@guarantors.GurantorName</td>
+                <td>@guarantors.GurantorEmail</td>
+                <td>@guarantors.Gender</td>
+                <td>@guarantors.Nationality</td>
+            </tr>
+        }
+    </table>
+</div>

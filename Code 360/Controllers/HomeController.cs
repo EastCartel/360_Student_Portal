@@ -1,4 +1,5 @@
 ﻿using Code_360.Models;
+using Code_360.Models.Guarantorx;
 using Code_360.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
@@ -13,20 +14,32 @@ namespace Code_360.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IStudentRepository _studentRepository;
-        private readonly IHostingEnvironment hostingEnvironment;
+        private readonly IGuarantorRepository _guarantorRepository;
 
-        public HomeController(IStudentRepository studentRepository, IHostingEnvironment hostingEnvironment)
+
+
+        private readonly IStudentRepository _studentRepository;
+        private readonly IWebHostEnvironment hostingEnvironment;
+
+        public HomeController(IStudentRepository studentRepository, IGuarantorRepository guarantorRepository, IWebHostEnvironment hostingEnvironment)
         {
             _studentRepository = studentRepository;
             this.hostingEnvironment = hostingEnvironment;
+
+            _guarantorRepository = guarantorRepository;
+
         }
 
         [Route("")]
         [Route("/home")]
         [Route("/index")]
-        [AllowAnonymous]
         public ViewResult Index()
+        {
+            return View();
+        }
+        [Route("dashboard")]
+        [AllowAnonymous]
+        public ViewResult Dashboard()
         {
             var model = _studentRepository.GetAllStudent();
             return View(model);
@@ -55,6 +68,56 @@ namespace Code_360.Controllers
             return View();
         }
 
+        private string ProcessGuarantorsFile(GurantorViewModel Gmodel)
+        {
+            string uniqueFileName = null;
+            return uniqueFileName;
+        } 
+
+        //methods gets all guarantors
+        [HttpGet]
+        public ViewResult GuarantorsIndex()
+        {
+            return View(_guarantorRepository.GetAllGuarantor());
+        }
+
+        [Route("GuarantorsCreate/{id?}")]
+        [HttpGet]
+        public ViewResult GuarantorsCreate(int id)
+        {
+            GurantorViewModel g = new GurantorViewModel();
+            g.StudentId = id;
+            return View(g);
+        }
+
+        [Route("GuarantorsCreate/{id?}")]
+        [HttpPost]
+        public IActionResult GuarantorsCreate(GurantorViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                string uniqueFileName = ProcessGuarantorsFile(model);
+                Guarantors newGuarantors = new Guarantors
+                {
+                    GurantorName = model.GurantorName,
+                    Gender = model.Gender,
+                    Address = model.Address,
+                    Nationality = model.Nationality,
+                    HomePhone = model.HomePhone,
+                    OfficePhone = model.OfficePhone,
+                    GurantorEmail = model.GurantorEmail,
+                    CompanyName = model.CompanyName,
+                };
+                _guarantorRepository.AddGuarantors(newGuarantors);
+                return RedirectToAction("index");
+            }
+            return View();
+        }
+
+
+
+
+
         [HttpPost]
         public IActionResult Create(StudentViewModel studentModel)
         {
@@ -63,6 +126,7 @@ namespace Code_360.Controllers
                 string fileName = ProcessUploadedFile(studentModel);
                 Student newStudent = new Student
                 {
+                    
                     Name = studentModel.Name,
                     Gender = studentModel.Gender,
                     DateOfBirth = studentModel.DateOfBirth,
@@ -79,7 +143,7 @@ namespace Code_360.Controllers
                     BVN = studentModel.BVN
                 };
                 _studentRepository.AddStudent(newStudent);
-                return RedirectToAction("index", new { Id = newStudent.Id });
+                return RedirectToAction("GuarantorsCreate", "Home", new { Id = newStudent.Id });
             }
             return View();
         }

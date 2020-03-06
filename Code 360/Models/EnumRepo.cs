@@ -87,7 +87,8 @@ namespace Code_360.Models
         Cash,
         Paypal
         }
-    
+
+       
 
     //enums containing the choice which are to picked in a drop down in the UI view
 

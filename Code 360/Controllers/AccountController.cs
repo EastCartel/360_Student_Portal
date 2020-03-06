@@ -42,11 +42,14 @@ namespace Code_360.Controllers
                 if (result.Succeeded)
                 {
                     await signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("index", "home");
+                    return RedirectToAction("dashboard", "home");
                 }
             }
             return View(registrationViewModel);
         }
+
+
+        //this is for the login button
 
         [HttpGet]
         [AllowAnonymous]
@@ -73,7 +76,7 @@ namespace Code_360.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("index", "home");
+                        return RedirectToAction("dashboard", "home");
                     }
                 }
             }
@@ -95,11 +98,11 @@ namespace Code_360.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();
-            return RedirectToAction("index", "home");
+            return RedirectToAction("Index", "home");
         }
     }
 }

@@ -45,11 +45,12 @@
                     {
                         <li>
 
-                            <form  method="post" asp-controller="account" asp-action="logout">
+                            @*<form  method="post" asp-controller="account" asp-action="logout">
                                 <button type="submit" class="nav-link btn btn-link py-0" style="text-decoration: none !important; color: white !important; width:auto;">
                                     Welcome, @User.Identity.Name     |     Logout
                                 </button>
-                            </form>
+                            </form>*@
+                            Welcome, @User.Identity.Name <a asp-controller="Account" asp-action="logout">logout</a>
                         </li>
                     }
                     else

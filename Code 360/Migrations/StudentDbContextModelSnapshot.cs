@@ -135,6 +135,9 @@ namespace Code_360.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("CompanyName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Gender")
                         .HasColumnType("int");
 
@@ -157,8 +160,6 @@ namespace Code_360.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("StudentId");
 
                     b.ToTable("Guarantors");
                 });
@@ -226,6 +227,32 @@ namespace Code_360.Migrations
                     b.HasIndex("CourseId");
 
                     b.ToTable("ProgramCourses");
+                });
+
+            modelBuilder.Entity("Code_360.Models.Projectox.Project", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Link")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("Project");
                 });
 
             modelBuilder.Entity("Code_360.Models.Salaryx.Salary", b =>
@@ -325,6 +352,48 @@ namespace Code_360.Migrations
                     b.HasIndex("BatchId");
 
                     b.ToTable("Students");
+                });
+
+            modelBuilder.Entity("Code_360.Models.StudentGurantorxx.StudentGuarantor", b =>
+                {
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GuarantorsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.HasKey("StudentId", "GuarantorsId");
+
+                    b.HasIndex("GuarantorsId");
+
+                    b.ToTable("StudentGurantors");
+                });
+
+            modelBuilder.Entity("Code_360.Models.StudentInBatches.StudentInBatch", b =>
+                {
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BatchId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Grade")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("StudentId", "BatchId");
+
+                    b.HasIndex("BatchId");
+
+                    b.ToTable("StudentInBatches");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -552,15 +621,6 @@ namespace Code_360.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Code_360.Models.Guarantorx.Guarantors", b =>
-                {
-                    b.HasOne("Code_360.Models.Student", "Student")
-                        .WithMany()
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Code_360.Models.Paymentx.Payment", b =>
                 {
                     b.HasOne("Code_360.Models.Student", "Student")
@@ -585,6 +645,15 @@ namespace Code_360.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Code_360.Models.Projectox.Project", b =>
+                {
+                    b.HasOne("Code_360.Models.Student", "Student")
+                        .WithMany("Projects")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Code_360.Models.Salaryx.Salary", b =>
                 {
                     b.HasOne("Code_360.Models.EmployMentx.Employment", null)
@@ -594,9 +663,39 @@ namespace Code_360.Migrations
 
             modelBuilder.Entity("Code_360.Models.Student", b =>
                 {
-                    b.HasOne("Code_360.Models.Batches.Batch", "Batch")
+                    b.HasOne("Code_360.Models.Batches.Batch", null)
                         .WithMany("Students")
                         .HasForeignKey("BatchId");
+                });
+
+            modelBuilder.Entity("Code_360.Models.StudentGurantorxx.StudentGuarantor", b =>
+                {
+                    b.HasOne("Code_360.Models.Guarantorx.Guarantors", "Guarantors")
+                        .WithMany("StudentGuarantors")
+                        .HasForeignKey("GuarantorsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Code_360.Models.Student", "Student")
+                        .WithMany("StudentGuarantors")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Code_360.Models.StudentInBatches.StudentInBatch", b =>
+                {
+                    b.HasOne("Code_360.Models.Batches.Batch", "Batch")
+                        .WithMany("StudentBatches")
+                        .HasForeignKey("BatchId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Code_360.Models.Student", "Student")
+                        .WithMany("StudentBatches")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

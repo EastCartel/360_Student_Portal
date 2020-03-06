@@ -295,3 +295,7 @@ C:\Users\user\Desktop\360_Student_Portal\Code 360\obj\Debug\netcoreapp3.1\Code 3
 C:\Users\user\Desktop\360_Student_Portal\Code 360\obj\Debug\netcoreapp3.1\Code 360.dll
 C:\Users\user\Desktop\360_Student_Portal\Code 360\obj\Debug\netcoreapp3.1\Code 360.pdb
 C:\Users\user\Desktop\360_Student_Portal\Code 360\obj\Debug\netcoreapp3.1\Code 360.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\user\Desktop\360_Student_Portal\Code 360\obj\Debug\netcoreapp3.1\Razor\Views\Home\GuarantorIndex.cshtml.g.cs
+C:\Users\user\Desktop\360_Student_Portal\Code 360\obj\Debug\netcoreapp3.1\Razor\Views\Home\GuarantorsCreate.cshtml.g.cs
+C:\Users\user\Desktop\360_Student_Portal\Code 360\obj\Debug\netcoreapp3.1\Razor\Views\Home\dashboard.cshtml.g.cs
+C:\Users\user\Desktop\360_Student_Portal\Code 360\obj\Debug\netcoreapp3.1\Razor\Views\Shared\landing.cshtml.g.cs

@@ -6,6 +6,8 @@ using Code_360.Models.Guarantorx;
 using Code_360.Models.Paymentx;
 using Code_360.Models.ProgramCourses;
 using Code_360.Models.Salaryx;
+using Code_360.Models.StudentGurantorxx;
+using Code_360.Models.StudentInBatches;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -41,6 +43,12 @@ namespace Code_360.Models
 
         public DbSet<ProgramCourse> ProgramCourses { get; set; }
 
+        public DbSet<StudentInBatch> StudentInBatches { get; set; }
+
+        public DbSet<StudentGuarantor> StudentGurantors { get; set; }
+
+
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -74,8 +82,41 @@ namespace Code_360.Models
                 .HasOne(sc => sc.Company)
                 .WithMany(sc => sc.StudentCompanies)
                 .HasForeignKey(sc => sc.CompanyId);
-                
-  
+
+            //this is a many to many for StudentInBatch
+
+            builder.Entity<StudentInBatch>()
+                .HasKey(x => new { x.StudentId, x.BatchId });
+
+            builder.Entity<StudentInBatch>()
+                .HasOne(sb => sb.Student)
+                .WithMany(sb => sb.StudentBatches)
+                .HasForeignKey(sb => sb.StudentId);
+
+            builder.Entity<StudentInBatch>()
+                .HasOne(sb => sb.Batch)
+                .WithMany(sb => sb.StudentBatches)
+                .HasForeignKey(sb => sb.BatchId);
+
+            //this is a many to many for StudentGuarantor
+
+            builder.Entity<StudentGuarantor>()
+                .HasKey(key => new { key.StudentId, key.GuarantorsId });
+
+            builder.Entity<StudentGuarantor>()
+                .HasOne(gs => gs.Student)
+                .WithMany(gs => gs.StudentGuarantors)
+                .HasForeignKey(gs => gs.StudentId);
+
+            builder.Entity<StudentGuarantor>()
+                .HasOne(g => g.Guarantors)
+                .WithMany(g => g.StudentGuarantors)
+                .HasForeignKey(g => g.GuarantorsId);
+
+
+
+
+
         }
     }
 }

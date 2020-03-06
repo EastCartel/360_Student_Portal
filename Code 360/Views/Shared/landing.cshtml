@@ -1,0 +1,17 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/landing/style.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/a9aa7a7702.js" crossorigin="anonymous"></script>
+    <title>Slider Sign Up Form</title>
+</head>
+<body>
+        @RenderBody()
+    @if (IsSectionDefined("scriptss"))
+    {
+        @RenderSection("scriptss", required: false)
+    }
+</body>
+</html>

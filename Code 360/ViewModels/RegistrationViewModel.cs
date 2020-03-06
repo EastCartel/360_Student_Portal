@@ -9,18 +9,25 @@ namespace Code_360.ViewModels
 {
     public class RegistrationViewModel
     {
-        [Required]
+        //[Required]
         [EmailAddress]
         [Remote(controller:"account", action: "IsEmailAvailable")]
         public string Email { get; set; }
-        [Required]
+
+        //[Required]
         [MinLength(5)]
-        [DataType(DataType.Password)]
+        [DataType(DataType.Password)] //this property masks the password
         public string Password { get; set; }
-        [Required]
-        [Display(Name ="Confirm Password")]
-        [Compare("Password", ErrorMessage ="Password and Confirm Password does not match")]
-        [DataType(DataType.Password)]
+
+        //[Required]
+        [Display(Name ="Confirm Password")] //display attribute for confirpassword
+        [Compare("Password", ErrorMessage ="Password and Confirm Password does not match")] //this compares the passwords
+        [DataType(DataType.Password)] //this masks the password
         public string ConfirmPassword { get; set; }
+        [Display(Name = "Remember Me")]
+        public bool Remember_Me { get; set; }
+
+
+
     }
 }
